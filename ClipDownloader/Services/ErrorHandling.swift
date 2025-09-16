@@ -1,6 +1,6 @@
 import Foundation
 
-/// Comprehensive error handling system for ClipCraftr
+/// Comprehensive error handling system for ClipDownloader
 enum AppError: LocalizedError {
     
     // MARK: - Setup and Configuration Errors

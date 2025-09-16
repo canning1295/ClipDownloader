@@ -10,7 +10,7 @@ struct ClipRequest: Codable, Equatable {
     var useDownloadSections: Bool = false
     var videoBitrateMbps: Double? = 5.0 // re-encode only
     var audioBitrateKbps: Int? = 160    // re-encode only
-    var outputFolder: URL = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Downloads/ClipCraftr")
+    var outputFolder: URL = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Downloads/ClipDownloader")
     var filenameTemplate: String = "{title}_{start}-{end}.{container}"
     
     init() {
