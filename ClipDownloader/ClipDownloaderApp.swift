@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct ClipCraftrApp: App {
+struct ClipDownloaderApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -293,7 +293,7 @@ class JobOrchestrator: ObservableObject {
     
     private func createTempDirectory() -> URL {
         let tempDir = URL(fileURLWithPath: NSTemporaryDirectory())
-        let jobTempDir = tempDir.appendingPathComponent("ClipCraftr_\(UUID().uuidString)")
+        let jobTempDir = tempDir.appendingPathComponent("ClipDownloader_\(UUID().uuidString)")
         
         do {
             try FileManager.default.createDirectory(at: jobTempDir, withIntermediateDirectories: true)

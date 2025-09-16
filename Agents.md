@@ -16,7 +16,7 @@
 
   * `yt-dlp` (standalone macOS universal2 executable).
   * `ffmpeg` (universal2, **LGPL-only build** preferred; use `h264_videotoolbox` and `aac_at` to avoid GPL encoders).
-* **Packaging:** Include binaries under `ClipCraftr.app/Contents/Resources/bin/`.
+* **Packaging:** Include binaries under `ClipDownloader.app/Contents/Resources/bin/`.
 * **Code signing & notarization:** Developer ID + Hardened Runtime. (Distribution outside MAS.)
 * **Sandbox:** Start **without App Sandbox** to simplify invoking helper binaries (or, if sandboxed later, ensure helpers are inside the bundle and signed with same team ID).
 
@@ -50,7 +50,7 @@
 
 3. **Output Panel**
 
-   * **Folder selector** (defaults to `~/Downloads/ClipCraftr/`).
+   * **Folder selector** (defaults to `~/Downloads/ClipDownloader/`).
    * **Filename field** with tokens support (live preview):
 
      * Tokens: `{title}`, `{id}`, `{start}`, `{end}`, `{res}`, `{container}`
@@ -131,7 +131,7 @@ enum JobStage { case idle, downloading, cutting, finished, failed, canceled }
   * 720p: `bv*[height=720]+ba/b[height=720]/b`
   * 480p: `bv*[height=480]+ba/b[height=480]/b`
 * **Container merge preference:** `--merge-output-format mp4` (if MP4) or `webm` if chosen; for audio-only use `-x --audio-format m4a` or `opus`.
-* **Output template:** temp dir, e.g., `/tmp/clipcraftr/<jobID>/input.%(ext)s`
+* **Output template:** temp dir, e.g., `/tmp/clipdownloader/<jobID>/input.%(ext)s`
 * **Sections (optional):** `--download-sections "*START-END"` (formatted HH\:MM\:SS). Keep in Advanced; still keep ffmpeg stage for final trimming if accuracy requested.
 
 **Example (auto 1080p, MP4):**
@@ -139,7 +139,7 @@ enum JobStage { case idle, downloading, cutting, finished, failed, canceled }
 ```
 yt-dlp --no-playlist \
   -f 'bv*[height<=1080]+ba/b[height<=1080]/b' \
-  -o '/tmp/clipcraftr/JOB/input.%(ext)s' \
+  -o '/tmp/clipdownloader/JOB/input.%(ext)s' \
   --merge-output-format mp4 \
   --newline \
   URL
@@ -190,8 +190,8 @@ yt-dlp --no-playlist \
 ## 5) File & Module Structure
 
 ```
-ClipCraftr/
-  ClipCraftrApp.swift           // @main entry
+ClipDownloader/
+  ClipDownloaderApp.swift           // @main entry
   Models/
     ClipRequest.swift
     Enums.swift                 // VideoQuality, Container, Accuracy, JobStage
@@ -390,7 +390,7 @@ func ffmpegArgs(input: URL, output: URL, req: ClipRequest, start: String, end: S
 
 ## 12) Acceptance Criteria
 
-* App launches on macOS 13+.
+* App launches on macOS 15+.
 * User can paste a YouTube URL, enter `Start`/`End`, choose quality/container, and **successfully save** a clip to a chosen folder with a chosen name.
 * Progress shows **two stages** (download → cut).
 * **Frame-accurate** and **keyframe-only** modes both work.
